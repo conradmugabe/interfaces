@@ -1,2 +1,3 @@
-# interfaces
-Implementing Interfaces in python
+# Interfaces
+
+Implementation of interfaces using python.

@@ -1,29 +1,26 @@
-instance = None
+"""todo database service module"""
+from abc import ABC, abstractmethod
 
 
-class DataBase:
+class TodoDataBaseService(ABC):
+    """Todo Database Service"""
 
-    def __init__(self, provider) -> None:
-        self.provider = provider
+    @abstractmethod
+    def save_todo(self):
+        """saves todo to database"""
 
-    def create(self, file_name, data):
-        return self.provider.create(file_name, data)
+    @abstractmethod
+    def read_all(self):
+        """retrieve todos in database"""
 
-    def readAll(self):
-        return self.provider.readAll()
+    @abstractmethod
+    def read_by_id(self, id: str):
+        """retrieve a todo from the database"""
 
-    def read(self, file_name):
-        return self.provider.read(file_name)
+    @abstractmethod
+    def update(self, id: str):
+        """update a todo in the database"""
 
-    def update(self, file_name, data):
-        return self.provider.update(file_name, data)
-
-    def delete(self, file_name):
-        return self.provider.delete(file_name)
-
-    @staticmethod
-    def getInstance(provider=None, re_init=False):
-        global instance
-        if instance is None or re_init is True:
-            return DataBase(provider)
-        return instance
+    @abstractmethod
+    def delete(self, id: str):
+        """delete a todo from the database"""
