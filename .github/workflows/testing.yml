@@ -14,5 +14,5 @@ jobs:
       - name: Checkout 🛎
         uses: actions/checkout@v3
 
-      - name: List All files and folders in the current directory ⚙️
-        run: ls -a
+      - name: Run tests 🧪
+        run: pytest -svv

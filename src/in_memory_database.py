@@ -2,7 +2,7 @@ from typing import Any
 instance = None
 
 
-class FileSystemDb:
+class TodoInMemoryDatabaseService:
 
     def _fileExists(self, file_name: str) -> Any:
         """
