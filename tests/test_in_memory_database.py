@@ -21,8 +21,12 @@ class TodoInMemoryDatabaseServiceTest:
 
     def test_successfully_instantiates_with_todo_array(self):
         """database instances"""
-        todo_one: Todo = dict({"id", "", "title": "todo 1", "user_id": "", "completed": False})
-        todo_two: Todo = dict({"id", "", "title": "todo 2", "user_id": "", "completed": True})
-        database = TodoInMemoryDatabaseService.get_instance(data=[todo_one, todo_two])
+        todo_one: Todo = {
+            "id": "fe2c3195-aeff-487a-a08f-e0bdc0ec6e9a",
+            "title": "test title 1",
+            "user_id": "913694c6-435a-4366-ba0d-da5334a611b2",
+            "completed": False,
+        } 
+        database = TodoInMemoryDatabaseService.get_instance(data=[todo_one])
 
-        assert len(database._data) == 2
+        assert len(database._data) == 1

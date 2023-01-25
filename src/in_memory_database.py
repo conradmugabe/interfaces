@@ -15,5 +15,5 @@ class TodoInMemoryDatabaseService:
     def get_instance(data: List[Todo] = None, re_init=False):
         """get an instance of TodoInMemoryDatabaseService"""
         if TodoInMemoryDatabaseService._instance is None or re_init is True:
-            TodoInMemoryDatabaseService._instance = TodoInMemoryDatabaseService()
+            TodoInMemoryDatabaseService._instance = TodoInMemoryDatabaseService(data=data)
         return TodoInMemoryDatabaseService._instance
