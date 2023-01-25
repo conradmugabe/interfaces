@@ -26,7 +26,9 @@ class TodoInMemoryDatabaseServiceTest:
             "title": "test title 1",
             "user_id": "913694c6-435a-4366-ba0d-da5334a611b2",
             "completed": False,
-        } 
-        database = TodoInMemoryDatabaseService.get_instance(data=[todo_one])
+        }
+        data = [todo_one]
+        database = TodoInMemoryDatabaseService.get_instance(data=data, re_init=True)
 
-        assert len(database._data) == 1
+        assert len(database.read_all()) == 1
+        assert database.read_all() == data
