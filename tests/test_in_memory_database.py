@@ -72,6 +72,19 @@ class TodoInMemoryDatabaseServiceTest:
 
         assert len(database.read_all()) == 0
 
+    def test_returns_none_when_deletion_does_not_occur(self, todo_list: List[Todo]):
+        """returns None when deletion does not occur"""
+        database = TodoInMemoryDatabaseService.get_instance(
+            data=todo_list, re_init=True
+        )
+
+        assert len(database.read_all()) == 1
+
+        todo = database.delete("12345")
+
+        assert len(database.read_all()) == 1
+        assert todo is None
+
     def test_successfully_updates_todo(self, todo_list: List[Todo]):
         """successfully updates todo"""
         database = TodoInMemoryDatabaseService.get_instance(
