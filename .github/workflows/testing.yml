@@ -5,7 +5,6 @@ on:
     branches:
       - "main"
 
-
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -14,8 +13,8 @@ jobs:
       - name: Checkout 🛎
         uses: actions/checkout@v3
 
-      - name: Check if python in the environment
+      - name: Build docker image 🐳 ⚙️
         run: docker build -t docker-python-interfaces -f docker/Dockerfile.dev .
 
-      - name: Run tests 🧪
+      - name: Run tests within docker 🧪
         run: docker run docker-python-interfaces pytest -svv
