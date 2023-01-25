@@ -17,4 +17,4 @@ jobs:
         run: docker build -t docker-python-interfaces -f docker/Dockerfile.dev .
 
       - name: Run tests within docker 🧪
-        run: docker run docker-python-interfaces pytest -svv
+        run: docker run docker-python-interfaces pytest -svv --cov-report=term-missing
