@@ -11,6 +11,7 @@ class TodoMongoDatabaseService(TodoDataBaseService):
     """Mongo Database Service"""
 
     def __init__(self, uri: str) -> None:
+        """initialize database"""
         self._client = MongoClient(uri)
         self._database = self._client["test"]
 

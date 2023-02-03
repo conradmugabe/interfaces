@@ -8,6 +8,7 @@ from pymongo import MongoClient
 from src.entities.todo import CreateTodo, Todo
 from src.databases.in_memory_database import TodoInMemoryDatabaseService
 from src.databases.mongo_database import TodoMongoDatabaseService
+from src.databases.postgres_database import TodoPostgresDatabaseService
 
 
 @pytest.fixture(scope="session")
@@ -115,3 +116,39 @@ def mongo_database(
     yield mongo_database_empty
 
     collection.delete_many({})
+
+
+@pytest.fixture(scope="session")
+def postgres_database_config() -> str:
+    """postgres database config"""
+    return "postgresql://user:testing@localhost:5432/"
+
+
+@pytest.fixture(scope="session")
+def postgres_database_empty(postgres_database_config: str):
+    """start instance of empty postgres db"""
+    engine = sqlalchemy.create_engine(postgres_database_config)
+    connection = engine.connect()
+
+    Base.metadata.create_all(bind=engine)
+    DatabaseSession = sessionmaker(bind=engine)
+    session = DatabaseSession()
+
+    yield session
+
+    session.close()
+    connection.close()
+
+
+@pytest.fixture(scope="function")
+def postgres_database(postgres_database_empty: TodoPostgresDatabaseService, create_todo_list: List[CreateTodo]):
+    """populate postgres database"""
+    for todo in create_todo_list:
+        postgres_database_empty.add(
+            TodoModel(title=todo["title"], completed=todo["completed"])
+        )
+        postgres_database_empty.commit()
+
+    yield postgres_database_empty
+
+    postgres_database_empty.query(TodoModel).delete()
