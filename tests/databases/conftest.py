@@ -56,3 +56,34 @@ def in_memory_database_empty() -> TodoInMemoryDatabaseService:
     """empty in memory database"""
     database = TodoInMemoryDatabaseService()
     return database
+
+
+@pytest.fixture(scope="session")
+def mongo_database_config() -> str:
+    """mongo database config"""
+    return "mongodb://localhost:27017/"
+
+
+@pytest.fixture(scope="session")
+def mongo_database_empty(mongo_database_config: str):
+    """create empty mongo database"""
+    client = MongoClient(mongo_database_config)
+    database = client["test"]
+
+    yield database
+
+    client.drop_database("test")
+    client.close()
+
+
+@pytest.fixture(scope="function")
+def mongo_database(
+    mongo_database_empty: TodoMongoDatabaseService, create_todo_list: List[CreateTodo]
+):
+    """populate mongo database"""
+    collection = mongo_database_empty["todos"]
+    collection.insert_many(create_todo_list)
+
+    yield mongo_database_empty
+
+    collection.delete_many({})
