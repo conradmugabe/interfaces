@@ -1,4 +1,5 @@
 # Interfaces
+![build workflow](https://github.com/conradmugabe/interfaces/actions/workflows/testing.yml/badge.svg)
 
 Implementation of interfaces using python.
 

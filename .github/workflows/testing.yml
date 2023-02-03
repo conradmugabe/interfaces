@@ -1,4 +1,4 @@
-name: Python Database Tests
+name: Build
 
 on:
   push:
