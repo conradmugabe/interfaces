@@ -2,7 +2,7 @@
 from abc import ABC, abstractmethod
 from typing import List
 
-from src.todo import Todo, CreateTodo
+from src.entities.todo import Todo, CreateTodo
 
 
 class TodoDataBaseService(ABC):
