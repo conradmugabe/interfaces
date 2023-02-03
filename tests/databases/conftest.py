@@ -63,6 +63,7 @@ def create_todo_array() -> List[CreateTodo]:
     ]
 
 
+@pytest.fixture
 def todo_list(create_todo_array: List[CreateTodo]) -> List[Todo]:
     """todo list"""
     todos: List[Todo] = []
