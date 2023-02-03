@@ -4,12 +4,13 @@ from typing import List
 
 import pytest
 import sqlalchemy
-from sqlalchemy.orm import sessionmaker
 from pymongo import MongoClient
+from sqlalchemy.orm import sessionmaker
 
 from src.entities.todo import CreateTodo, Todo
-from src.databases.in_memory_database import TodoInMemoryDatabaseService
+from src.databases.model.todo import Base, TodoModel
 from src.databases.mongo_database import TodoMongoDatabaseService
+from src.databases.in_memory_database import TodoInMemoryDatabaseService
 from src.databases.postgres_database import TodoPostgresDatabaseService
 
 
