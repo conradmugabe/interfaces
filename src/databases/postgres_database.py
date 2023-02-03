@@ -31,6 +31,12 @@ class TodoPostgresDatabaseService(TodoDataBaseService):
 
     def save_todo(self, data: CreateTodo) -> Todo:
         """saves todo"""
+        session = self._session()
+
+        todo = TodoModel(title=data["title"], completed=data["completed"])
+        session.add(todo)
+        session.commit()
+        return self._create_todo_object(todo)
 
     def read_all(self) -> List[Todo]:
         """retrieves todos"""
