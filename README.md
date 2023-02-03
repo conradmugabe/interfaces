@@ -1,6 +1,8 @@
 # Interfaces
 ![build workflow](https://github.com/conradmugabe/interfaces/actions/workflows/testing.yml/badge.svg)
 
+[![codecov](https://codecov.io/github/conradmugabe/interfaces/branch/main/graph/badge.svg?token=5F3GTE485A)](https://codecov.io/github/conradmugabe/interfaces)
+
 Implementation of interfaces using python.
 
 ## Why use interfaces?
