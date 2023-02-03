@@ -36,12 +36,37 @@ def create_todo_list() -> List[CreateTodo]:
         },
     ]
 
+@pytest.fixture
+def create_todo_array() -> List[CreateTodo]:
+    """create todo list"""
+    return [
+        {
+            "title": "quis ut nam facilis et officia qui",
+            "completed": False,
+        },
+        {
+            "title": "fugiat veniam minus",
+            "completed": True,
+        },
+        {
+            "title": "et porro tempora",
+            "completed": True,
+        },
+        {
+            "title": "laboriosam mollitia et enim quasi adipisci quia provident illum",
+            "completed": False,
+        },
+        {
+            "title": "qui ullam ratione quibusdam voluptatem quia omnis",
+            "completed": False,
+        },
+    ]
 
-@pytest.fixture(scope="session")
-def todo_list(create_todo_list: List[CreateTodo]) -> List[Todo]:
+
+def todo_list(create_todo_array: List[CreateTodo]) -> List[Todo]:
     """todo list"""
     todos: List[Todo] = []
-    for item in create_todo_list:
+    for item in create_todo_array:
         todos.append({**item, "id": uuid4()})
     return todos
 
