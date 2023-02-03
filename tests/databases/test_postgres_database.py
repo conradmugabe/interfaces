@@ -22,10 +22,10 @@ class TodoPostgresDatabaseServiceTest:
         assert todo == todos_after_save[-1]
 
     def test_retrieves_all_todos(
-        self, postgres_database_config: str, postgres_database: TodoPostgresDatabaseService
+        self, postgres_database_config: str, postgres_database: TodoPostgresDatabaseService, create_todo_list: List[CreateTodo] 
     ):
         """test retrieves all todos"""
         database = TodoPostgresDatabaseService(postgres_database_config)
         todos = database.read_all()
 
-        assert len(todos) == 5
+        assert len(todos) == len(create_todo_list)
