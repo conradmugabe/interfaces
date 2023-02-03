@@ -2,7 +2,7 @@
 from src.databases.mongo_database import TodoMongoDatabaseService
 
 
-class TodoInMemoryDatabaseTest:
+class TodoMongoDatabaseServiceTest:
     """Todo In Memory Database Tests"""
 
     def test_successfully_persists_todo(
@@ -22,10 +22,10 @@ class TodoInMemoryDatabaseTest:
         assert todo == todos_after_save[-1]
 
     def test_retrieves_all_todos(
-        self,
-        mongo_database: TodoMongoDatabaseService,
+        self, mongo_database_config: str, mongo_database: TodoMongoDatabaseService
     ):
         """test retrieves all todos"""
-        todos = mongo_database.read_all()
+        database = TodoMongoDatabaseService(mongo_database_config)
+        todos = database.read_all()
 
         assert len(todos) == 5
