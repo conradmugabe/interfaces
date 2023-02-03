@@ -13,8 +13,8 @@ jobs:
       - name: Checkout 🛎
         uses: actions/checkout@v3
 
-      - name: Build docker image 🐳 ⚙️
-        run: docker build -t docker-python-interfaces -f docker/Dockerfile.dev .
+      - name: Install dependencies ⚙️
+        run: pip install -r /opt/requirements.txt
 
       - name: Run tests 🧪
         run: pytest -svv --cov=src --cov-report=xml
