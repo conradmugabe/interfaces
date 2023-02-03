@@ -17,7 +17,7 @@ jobs:
         run: docker build -t docker-python-interfaces -f docker/Dockerfile.dev .
 
       - name: Run tests within docker 🧪
-        run: docker run docker-python-interfaces pytest -svv --cov=src --cov-report=xml
+        run: docker run docker-python-interfaces pytest -svv --cov=src --cov-report=xml && ls -a
 
       - name: Upload coverage to Codecov
         run: docker run docker-python-interfaces ls -a
