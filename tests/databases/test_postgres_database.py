@@ -9,7 +9,7 @@ class TodoPostgresDatabaseServiceTest:
         self, postgres_database_config: str, postgres_database: TodoPostgresDatabaseService
     ):
         """test saves todo"""
-        database = TodoPostgresDatabaseService(mongo_database_config)
+        database = TodoPostgresDatabaseService(postgres_database_config)
         todos_before_save = database.read_all()
         len_before_save = len(todos_before_save)
 
