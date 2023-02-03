@@ -71,14 +71,14 @@ def todo_list(create_todo_array: List[CreateTodo]) -> List[Todo]:
     return todos
 
 
-@pytest.fixture(scope="session")
+@pytest.fixture
 def in_memory_database(todo_list: List[Todo]) -> TodoInMemoryDatabaseService:
     """in memory database"""
     database = TodoInMemoryDatabaseService(todo_list)
     return database
 
 
-@pytest.fixture(scope="session")
+@pytest.fixture
 def in_memory_database_empty() -> TodoInMemoryDatabaseService:
     """empty in memory database"""
     database = TodoInMemoryDatabaseService()
