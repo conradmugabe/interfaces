@@ -6,9 +6,10 @@ import pytest
 
 from src.entities.todo import CreateTodo, Todo
 from src.databases.in_memory_database import TodoInMemoryDatabaseService
+from src.databases.mongo_database import TodoMongoDatabaseService
 
 
-@pytest.fixture
+@pytest.fixture(scope="session")
 def create_todo_list() -> List[CreateTodo]:
     """create todo list"""
     return [
@@ -35,7 +36,7 @@ def create_todo_list() -> List[CreateTodo]:
     ]
 
 
-@pytest.fixture
+@pytest.fixture(scope="session")
 def todo_list(create_todo_list: List[CreateTodo]) -> List[Todo]:
     """todo list"""
     todos: List[Todo] = []
@@ -44,14 +45,14 @@ def todo_list(create_todo_list: List[CreateTodo]) -> List[Todo]:
     return todos
 
 
-@pytest.fixture
+@pytest.fixture(scope="session")
 def in_memory_database(todo_list: List[Todo]) -> TodoInMemoryDatabaseService:
     """in memory database"""
     database = TodoInMemoryDatabaseService(todo_list)
     return database
 
 
-@pytest.fixture
+@pytest.fixture(scope="session")
 def in_memory_database_empty() -> TodoInMemoryDatabaseService:
     """empty in memory database"""
     database = TodoInMemoryDatabaseService()
