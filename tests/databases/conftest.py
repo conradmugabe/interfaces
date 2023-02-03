@@ -3,6 +3,7 @@ from uuid import uuid4
 from typing import List
 
 import pytest
+from pymongo import MongoClient
 
 from src.entities.todo import CreateTodo, Todo
 from src.databases.in_memory_database import TodoInMemoryDatabaseService
