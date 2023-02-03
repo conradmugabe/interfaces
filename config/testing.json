@@ -1,0 +1,7 @@
+[
+  { "name": "MONGODB_PORT", "value": "27018" },
+  { "name": "MONGODB_USER", "value": "root" },
+  { "name": "MONGODB_PASSWORD", "value": "mongodb" },
+  { "name": "MONGODB_HOSTNAME", "value": "localhost" },
+  { "name": "APPLICATION_DB", "value": "testing" }
+]
