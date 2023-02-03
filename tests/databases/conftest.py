@@ -3,6 +3,8 @@ from uuid import uuid4
 from typing import List
 
 import pytest
+import sqlalchemy
+from sqlalchemy.orm import sessionmaker
 from pymongo import MongoClient
 
 from src.entities.todo import CreateTodo, Todo
