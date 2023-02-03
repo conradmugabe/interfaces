@@ -20,7 +20,8 @@ jobs:
         run: docker run docker-python-interfaces pytest -svv --cov=src --cov-report=xml
 
       - name: Upload coverage to Codecov
-        run: ls -a
+        run: docker run docker-python-interfaces ls -a
+          # docker run docker-python-interfaces export CODECOV_TOKEN=${{ secrets.CODECOV_TOKEN }} && curl -Os https://uploader.codecov.io/latest/linux/codecov && chmod +x codecov && ./codecov
         # uses: codecov/codecov-action@v3
         # with:
         #   token: ${{ secrets.CODECOV_TOKEN }}
